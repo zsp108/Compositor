@@ -382,11 +382,11 @@ final class ProjectController {
         var source = suppliedURL
         if source == nil {
             let panel = NSOpenPanel()
-            panel.allowedContentTypes = [.compositorProject]
+            panel.allowedContentTypes = [.compositorProject] + UTType.importableImages
             panel.allowsMultipleSelection = false
             panel.canChooseDirectories = false
             panel.treatsFilePackagesAsDirectories = false
-            panel.title = "Open Project"
+            panel.title = "Open"
             let response: NSApplication.ModalResponse
             if let window { response = await panel.beginSheetModal(for: window) }
             else { response = await panel.begin() }
@@ -394,6 +394,10 @@ final class ProjectController {
             source = url
         }
         guard let source else { return false }
+        if source.pathExtension.lowercased() != "comp" {
+            await session.importImages([source])
+            return true
+        }
         // A recent project deleted in Finder: name the project, not the manifest inside it the load would miss.
         guard FileManager.default.fileExists(atPath: source.path) else {
             RecentProjects.shared.refresh()

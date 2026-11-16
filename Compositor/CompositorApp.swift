@@ -60,7 +60,7 @@ struct CompositorApp: App {
                         Task { await applicationDelegate.projects.newCanvas() }
                     }.configuredKeyboardShortcut("n")
                         .disabled(!applicationDelegate.projects.canStart)
-                    Button("Open Project…") {
+                    Button("Open…") {
                         applicationDelegate.showEditor?()
                         Task { await applicationDelegate.projects.open() }
                     }

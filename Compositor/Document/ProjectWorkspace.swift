@@ -100,20 +100,36 @@ final class ProjectWorkspace {
     @discardableResult
     func open(_ suppliedURL: URL? = nil) async -> Bool {
         guard canSwitch else { return false }
-        isManaging = true
-        defer { isManaging = false }
         var urls = suppliedURL.map { [$0] } ?? []
         if urls.isEmpty {
             let panel = NSOpenPanel()
-            panel.allowedContentTypes = [.compositorProject]
+            panel.allowedContentTypes = [.compositorProject] + UTType.importableImages
             panel.allowsMultipleSelection = true
             panel.treatsFilePackagesAsDirectories = false
+            panel.title = "Open"
             let response = if let window { await panel.beginSheetModal(for: window) } else { await panel.begin() }
             guard response == .OK else { return false }
             urls = panel.urls
         }
+        var compURLs: [URL] = []
+        var imageURLs: [URL] = []
+        for url in urls {
+            if url.pathExtension.lowercased() == "comp" {
+                compURLs.append(url)
+            } else {
+                imageURLs.append(url)
+            }
+        }
         var opened = false
-        for url in urls { opened = await loadProject(url) || opened }
+        if !compURLs.isEmpty {
+            isManaging = true
+            for url in compURLs { opened = await loadProject(url) || opened }
+            isManaging = false
+        }
+        if !imageURLs.isEmpty {
+            await receive(imageURLs)
+            opened = true
+        }
         return opened
     }
     private func loadProject(_ url: URL) async -> Bool {

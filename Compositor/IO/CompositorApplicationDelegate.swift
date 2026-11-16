@@ -55,6 +55,17 @@ final class CompositorApplicationDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Ensure the editor window is presented, particularly when launched by Finder Open With or Dock drops
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
+            guard let self else { return }
+            if !NSApp.windows.contains(where: { $0.isVisible && $0.canBecomeKey }) {
+                if let showEditor = self.showEditor {
+                    showEditor()
+                } else {
+                    Self.reopen()
+                }
+            }
+        }
         // macOS adds Writing Tools, AutoFill, Start Dictation and Emoji & Symbols to the Edit menu; they're for typing
         // text, not editing images, and only got in the way. It adds Enter Full Screen (Globe-F) to the View menu,
         // beside Canvas Only (F), which does the same job without the slow slide into a new space. Taken out once the menus exist, and again whenever the

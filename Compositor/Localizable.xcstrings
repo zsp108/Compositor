@@ -10624,6 +10624,22 @@
           }
         }
       }
+    },
+    "Open…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Open…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开…"
+          }
+        }
+      }
     }
   },
   "version": "1.0"
