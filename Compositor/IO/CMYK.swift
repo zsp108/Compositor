@@ -3,7 +3,7 @@ import ColorSync
 import UniformTypeIdentifiers
 
 /// A CMYK output profile: how a press or printer turns ink amounts into color, read from an ICC file.
-nonisolated struct CMYKProfile: Hashable, Identifiable, @unchecked Sendable {
+struct CMYKProfile: Hashable, Identifiable, @unchecked Sendable {
     let name: String
     let data: Data
     let space: CGColorSpace
@@ -23,7 +23,7 @@ nonisolated struct CMYKProfile: Hashable, Identifiable, @unchecked Sendable {
 /// CMYK for print, from documents that stay RGB: a proof of the chosen profile on the canvas (View › CMYK › Proof Colors) and
 /// export through it (Export As, JPEG, TIFF or PDF). Ink values are never edited directly; what printing changes is
 /// mostly how saturated a color can be, which the proof shows on the RGB screen.
-nonisolated enum CMYK {
+enum CMYK {
     /// Where macOS keeps its color profiles that the app can read, and where profiles loaded with Load Profile go.
     private static var folders: [URL] {
         [URL(fileURLWithPath: "/System/Library/ColorSync/Profiles"), URL(fileURLWithPath: "/Library/ColorSync/Profiles"), loadedFolder]
@@ -184,7 +184,7 @@ nonisolated enum CMYK {
     }
 }
 
-nonisolated enum CMYKError: LocalizedError {
+enum CMYKError: LocalizedError {
     case notCMYK
     var errorDescription: String? { "That profile isn’t a CMYK output profile." }
 }

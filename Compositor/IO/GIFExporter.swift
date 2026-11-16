@@ -3,7 +3,7 @@ import CoreGraphics
 import ImageIO
 import UniformTypeIdentifiers
 
-nonisolated struct GIFExportOptions: Equatable, Sendable {
+struct GIFExportOptions: Equatable, Sendable {
     var loopsForever = true
     var keepsTransparency = true
     var red: CGFloat = 1
@@ -11,7 +11,7 @@ nonisolated struct GIFExportOptions: Equatable, Sendable {
     var blue: CGFloat = 1
 }
 
-nonisolated enum GIFExportError: LocalizedError {
+enum GIFExportError: LocalizedError {
     case tooLarge, invalidTimeline
 
     var errorDescription: String? {
@@ -24,7 +24,7 @@ nonisolated enum GIFExportError: LocalizedError {
 }
 
 /// Only the encoded bytes and one decoded preview cross actors; their image is immutable.
-nonisolated struct GIFExportResult: @unchecked Sendable {
+struct GIFExportResult: @unchecked Sendable {
     let data: Data
     let preview: CGImage
     let durations: [TimeInterval]

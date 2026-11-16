@@ -5,7 +5,7 @@ import simd
 
 /// Volumetric Light on the GPU (see `VolumetricLighting`): the beams, gathered at each pixel along the line back toward
 /// the light, and then the beams and haze laid over the photo. Run inside a Core Image graph, as `MetalRimLight` is.
-nonisolated final class MetalVolumetricLight: @unchecked Sendable {
+final class MetalVolumetricLight: @unchecked Sendable {
     static let shared: MetalVolumetricLight? = try? MetalVolumetricLight()
     let beams: MTLComputePipelineState
     let combine: MTLComputePipelineState

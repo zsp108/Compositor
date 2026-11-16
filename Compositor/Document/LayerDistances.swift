@@ -3,7 +3,7 @@ import Foundation
 
 /// A gap shown on the canvas: along x (`horizontal`) or y from `from` to `to`, at `across` on the other axis, in
 /// document pixels.
-nonisolated struct DistanceLine: Equatable {
+struct DistanceLine: Equatable {
     var horizontal: Bool
     var from: CGFloat
     var to: CGFloat
@@ -12,7 +12,7 @@ nonisolated struct DistanceLine: Equatable {
 }
 
 /// The pixel gaps the Move tool shows: while a layer is dragged, and with Command held over another layer.
-nonisolated enum LayerDistances {
+enum LayerDistances {
     /// While `box` moves: from each of its sides to the nearest edge facing it, of a layer level with it or the canvas.
     static func moving(_ box: CGRect, among others: [CGRect], canvas: CGSize) -> [DistanceLine] {
         let page = CGRect(origin: .zero, size: canvas)

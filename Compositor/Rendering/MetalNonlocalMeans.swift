@@ -4,7 +4,7 @@ import Metal
 /// `nonlocal_means` in AdjustPixels.c, which hands its work here through `adjust_nonlocal_means_gpu` and does it itself
 /// only when this can't. Each group of threads keeps its block of pixels and the reach of their search around it in
 /// fast shared memory, so each pixel's thousands of comparisons read from there rather than from the image.
-nonisolated final class MetalNonlocalMeans: @unchecked Sendable {
+final class MetalNonlocalMeans: @unchecked Sendable {
     static let shared: MetalNonlocalMeans? = try? MetalNonlocalMeans()
     /// Points the C code at the GPU; touched before the noise reduction runs.
     static let installed: Void = {

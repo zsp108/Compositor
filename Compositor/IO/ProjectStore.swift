@@ -15,7 +15,7 @@ extension UTType {
     static let radianceHDR = UTType("public.radiance") ?? .image
 }
 
-nonisolated struct ProjectManifest: Codable, Sendable {
+struct ProjectManifest: Codable, Sendable {
     /// The format version new saves write.
     static let current = 21
     /// Every version `load` accepts: each one a release has written (1 through `current`), and 27 from the
@@ -36,7 +36,7 @@ nonisolated struct ProjectManifest: Codable, Sendable {
     var guides: [CanvasGuide]? = nil
 }
 
-nonisolated struct ProjectLayerRecord: Codable, Sendable {
+struct ProjectLayerRecord: Codable, Sendable {
     let id: UUID
     let name: String
     var isVisible: Bool
@@ -63,7 +63,7 @@ nonisolated struct ProjectLayerRecord: Codable, Sendable {
     var gif: ProjectGIFRecord? = nil
 }
 
-nonisolated struct ProjectGIFRecord: Codable, Sendable {
+struct ProjectGIFRecord: Codable, Sendable {
     let sourceFile: String
     let selectedFrameIndex: Int
     var geometry: GIFFrameGeometry? = nil
@@ -98,7 +98,7 @@ nonisolated struct ProjectGIFRecord: Codable, Sendable {
     }
 }
 
-nonisolated struct ProjectGIFTimingRecord: Codable, Sendable {
+struct ProjectGIFTimingRecord: Codable, Sendable {
     var mode: GIFDelayMode
     var uniformDelay: TimeInterval
     var frameDelays: [ProjectGIFDelayRecord]
@@ -122,17 +122,17 @@ nonisolated struct ProjectGIFTimingRecord: Codable, Sendable {
     }
 }
 
-nonisolated struct ProjectGIFDelayRecord: Codable, Sendable {
+struct ProjectGIFDelayRecord: Codable, Sendable {
     let index: Int
     let duration: TimeInterval
 }
 
-nonisolated struct ProjectGIFPixelsRecord: Codable, Sendable {
+struct ProjectGIFPixelsRecord: Codable, Sendable {
     let index: Int
     let imageFile: String
 }
 
-nonisolated struct ProjectSnapshot: @unchecked Sendable {
+struct ProjectSnapshot: @unchecked Sendable {
     // Snapshot dictionaries are value copies; their CGImages and GIF sources are immutable across actors.
     let manifest: ProjectManifest
     let images: [UUID: ImportedImage]
@@ -140,7 +140,7 @@ nonisolated struct ProjectSnapshot: @unchecked Sendable {
     var animations: [UUID: GIFAnimation] = [:]
 }
 
-nonisolated enum ProjectError: LocalizedError {
+enum ProjectError: LocalizedError {
     case invalid, version(Int), missingImage, tooLarge, encode
     var errorDescription: String? {
         switch self {

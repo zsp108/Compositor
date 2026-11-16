@@ -5,7 +5,7 @@ import AppKit
 /// Operations that understand 16-bit pixels read `deep` and make a new one; any other operation makes a new
 /// `ImportedImage` without it, which `keepLayerDepths` makes 16-bit again as the edit ends, so a layer stays at the depth
 /// it was given until Convert to 8-Bit.
-nonisolated enum DeepLayer {
+enum DeepLayer {
     /// The one layout 16-bit pixels are kept in: sRGB, premultiplied RGBA, native-endian 16-bit, rows packed
     /// (`width × 8` bytes), top-left origin like `BrushRaster`. `hdr`: an HDR layer's instead, the same but half floats
     /// in extended sRGB, keeping light brighter than white (see `hdrSpace`).

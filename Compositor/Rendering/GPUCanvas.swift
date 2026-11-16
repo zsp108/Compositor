@@ -294,7 +294,7 @@ import QuartzCore
         return wrap(texture, mask: mask)
     }
 
-    static func grayCopy(_ image: CGImage) throws -> CGContext {
+    nonisolated static func grayCopy(_ image: CGImage) throws -> CGContext {
         let context = try BrushRaster.context(width: image.width, height: image.height, mask: true)
         context.setFillColor(gray: 0, alpha: 1)
         context.fill(CGRect(x: 0, y: 0, width: image.width, height: image.height))
@@ -512,7 +512,7 @@ final class MetalCanvasView: NSView {
     }
 }
 
-nonisolated enum GPUBlend {
+enum GPUBlend {
     /// `top` composited over `bottom` in `mode`.
     static func blend(_ top: CIImage, over bottom: CIImage, mode: LayerBlendMode) -> CIImage {
         guard let name = filterName(mode) else { return top.composited(over: bottom) }
@@ -554,7 +554,7 @@ nonisolated enum GPUBlend {
     }
 }
 
-nonisolated enum GPUAdjustment {
+enum GPUAdjustment {
     /// `image` adjusted, laid out in frame pixels: `scale` frame pixels per document pixel, and `mapping` from document
     /// pixels to the frame (for Grain, whose pattern belongs to the document).
     /// `hdr`: the document has an HDR layer, so what's below may be brighter than white. Exposure then works on its full

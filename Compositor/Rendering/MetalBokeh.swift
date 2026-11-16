@@ -7,7 +7,7 @@ import Metal
 /// Ring asks. It works in half floats, so lights brighter than white keep their brightness through the blur. A big
 /// blur runs on a smaller copy, which it hides, so its cost stays the same however wide the discs. It runs inside the
 /// Core Image graph (`BokehKernel`), so nothing is read back to the CPU on the way.
-nonisolated final class MetalBokeh: @unchecked Sendable {
+final class MetalBokeh: @unchecked Sendable {
     static let shared: MetalBokeh? = try? MetalBokeh()
     /// The widest disc radius gathered at full size, in pixels.
     static let largestRadius: CGFloat = 20

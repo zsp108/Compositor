@@ -1,7 +1,7 @@
 import AppKit
 import CoreImage
 
-nonisolated enum AdjustmentKind: String, Codable, CaseIterable, Sendable {
+enum AdjustmentKind: String, Codable, CaseIterable, Sendable {
     case hsv = "Hue/Saturation", levels = "Levels", curves = "Curves"
     case exposure = "Exposure", gradientMap = "Gradient Map", grain = "Grain", addNoise = "Add Noise"
     case gaussianBlur = "Gaussian Blur", motionBlur = "Motion Blur"
@@ -66,7 +66,7 @@ nonisolated enum AdjustmentKind: String, Codable, CaseIterable, Sendable {
         }
     }
 }
-nonisolated struct LayerAdjustment: Codable, Equatable, Sendable {
+struct LayerAdjustment: Codable, Equatable, Sendable {
     var kind: AdjustmentKind
     var hue: Double = 0
     var saturation: Double = 0
@@ -302,7 +302,7 @@ extension EditorSession {
 /// The settings a filter adjustment layer keeps: those of its filter (see `FilterSettings`), positions in the document's
 /// pixels. Vignette, Tonal Contrast and Lens Effects, which came later (version 18), each keep theirs in an object of
 /// their own, absent from other layers.
-nonisolated struct FilterLayerSettings: Codable, Equatable, Sendable {
+struct FilterLayerSettings: Codable, Equatable, Sendable {
     var progressiveFrom: Double = 0
     var progressiveTo: Double = 20
     var progressiveStart: CGPoint?
@@ -370,7 +370,7 @@ nonisolated struct FilterLayerSettings: Codable, Equatable, Sendable {
 }
 
 /// A Vignette layer's settings, as the filter's (see `FilterSettings`).
-nonisolated struct VignetteLayerSettings: Codable, Equatable, Sendable {
+struct VignetteLayerSettings: Codable, Equatable, Sendable {
     var amount: Double = 35
     var color = AdjustmentColor(red: 0, green: 0, blue: 0)
     var midpoint: Double = 50
@@ -394,7 +394,7 @@ nonisolated struct VignetteLayerSettings: Codable, Equatable, Sendable {
 }
 
 /// A Tonal Contrast layer's settings, as the filter's (see `FilterSettings`).
-nonisolated struct TonalLayerSettings: Codable, Equatable, Sendable {
+struct TonalLayerSettings: Codable, Equatable, Sendable {
     var amount: Double = 50
     var radius: Double = 16
     var shadows: Double = 40
@@ -417,7 +417,7 @@ nonisolated struct TonalLayerSettings: Codable, Equatable, Sendable {
 }
 
 /// A Sharpen layer's settings, as the filter's (see `FilterSettings`).
-nonisolated struct SharpenLayerSettings: Codable, Equatable, Sendable {
+struct SharpenLayerSettings: Codable, Equatable, Sendable {
     var amount: Double = 100
     var radius: Double = 1
 
@@ -435,7 +435,7 @@ nonisolated struct SharpenLayerSettings: Codable, Equatable, Sendable {
 }
 
 /// A Reduce Noise layer's settings, as the filter's (see `FilterSettings`).
-nonisolated struct ReduceNoiseLayerSettings: Codable, Equatable, Sendable {
+struct ReduceNoiseLayerSettings: Codable, Equatable, Sendable {
     var strength: Double = 50
     var details: Double = 50
     var color: Double = 50

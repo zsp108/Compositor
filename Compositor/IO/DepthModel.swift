@@ -9,7 +9,7 @@ import Vision
 /// (Apache-2.0), for Volumetric Light's fog. It isn't in the app: the first time it's needed it's downloaded (three
 /// files, checked against the fingerprints below), compiled and kept in Application Support. Until then, or without a
 /// connection, `depth` is nil and the fog falls back to its own guess.
-nonisolated enum DepthModel {
+enum DepthModel {
     /// Where the files are published, and what each must be. A new model gets a new release.
     static var source = URL(string: "https://github.com/robbietilton/Compositor/releases/download/depth-model-1/")!
     private static let files: [(name: String, path: String, sha256: String)] = [
@@ -183,7 +183,7 @@ nonisolated enum DepthModel {
 }
 
 /// A photo's depth from `DepthModel`: `width` × `height` values, rows top-down, 1 nearest and 0 farthest.
-nonisolated struct DepthMap: Sendable {
+struct DepthMap: Sendable {
     let values: [Float]
     let width: Int
     let height: Int

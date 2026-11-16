@@ -19,12 +19,9 @@ struct CompositorApp: App {
             // Files opened from Finder or dropped on the Dock icon go to the app delegate, which imports them into
             // the open window. Left to SwiftUI, each one builds a throwaway window and fades the editor out and back.
             .handlesExternalEvents(matching: [])
-            // A first launch fills the screen (without going full screen); after that macOS reopens the window at the
-            // size it was left.
-            .defaultWindowPlacement { _, context in
-                WindowPlacement(size: context.defaultDisplay.visibleRect.size)
-            }
             // The project's name is already on its tab, so the toolbar doesn't repeat it as a window title.
+            // Note: defaultWindowPlacement (macOS 26+) removed for macOS 15 compatibility.
+            // Initial window sizing is handled by ProjectWindowBridge.fillScreenOnceForThisBuild.
             .windowToolbarStyle(.unifiedCompact(showsTitle: false))
             .commands {
                 CommandGroup(replacing: .undoRedo) {

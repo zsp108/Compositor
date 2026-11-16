@@ -96,13 +96,15 @@ struct SliderTrackView: View {
     @State private var resetting = false
     @State private var lastKnobPress: Date?
 
-    /// Solid while it rests; held, it turns to Liquid Glass and grows a little, as the system's knob does, so the
-    /// track shows through it. A soft shadow, not an outline, keeps it apart from a light track.
+    /// Solid while it rests; held, it grows a little so the track shows through it.
+    /// A soft shadow, not an outline, keeps it apart from a light track.
+    /// Note: glassEffect (macOS 26+) replaced with a translucent fill for macOS 15 compatibility.
     private var knob: some View {
         let shape = RoundedRectangle(cornerRadius: SliderGeometry.knobSize.width / 2, style: .continuous)
         return Group {
             if grab != nil {
-                shape.fill(.clear).glassEffect(.clear, in: shape)
+                shape.fill(Color(white: 0.95).opacity(0.7))
+                    .background(.ultraThinMaterial, in: shape)
             } else {
                 shape.fill(Color(white: 0.92)).shadow(color: .black.opacity(0.35), radius: 1, y: 0.5)
             }

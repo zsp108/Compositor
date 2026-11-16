@@ -3,7 +3,7 @@ import AppKit
 import ImageIO
 
 /// The units New Canvas sizes can be typed in. Print units turn into pixels at the chosen DPI.
-nonisolated enum NewCanvasUnit: String, CaseIterable, Sendable {
+enum NewCanvasUnit: String, CaseIterable, Sendable {
     case pixels = "px", inches = "in", centimeters = "cm", millimeters = "mm"
 
     /// The unit written out, for the summary line's pill.
@@ -42,7 +42,7 @@ nonisolated enum NewCanvasUnit: String, CaseIterable, Sendable {
 }
 
 /// What a new canvas starts as: see-through, or a Background layer of white or black.
-nonisolated enum NewCanvasBackground: String, CaseIterable, Sendable {
+enum NewCanvasBackground: String, CaseIterable, Sendable {
     case transparent, white, black
     var title: String { "\(rawValue.capitalized) canvas" }
     var next: NewCanvasBackground { Self.allCases[(Self.allCases.firstIndex(of: self)! + 1) % Self.allCases.count] }

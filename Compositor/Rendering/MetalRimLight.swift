@@ -7,7 +7,7 @@ import simd
 /// rounded surface's normal there with the photo's detail pressed in, and the light's share of it; past the edge, the
 /// loose strands that stand out from the backdrop. Then all of it laid over the photo. Run inside a Core Image graph,
 /// as `MetalFinishing` is.
-nonisolated final class MetalRimLight: @unchecked Sendable {
+final class MetalRimLight: @unchecked Sendable {
     static let shared: MetalRimLight? = try? MetalRimLight()
     let pipeline: MTLComputePipelineState
     let combine: MTLComputePipelineState

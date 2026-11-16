@@ -3,7 +3,7 @@ import CoreImage
 
 /// One of Rim Light's lights: where it comes from, in degrees counterclockwise from the right, its color, how strong
 /// it is, how far it wraps around the edges, and how hard its inner edge is rather than feathered, each 0–100.
-nonisolated struct RimLight: Equatable, Sendable, Identifiable {
+struct RimLight: Equatable, Sendable, Identifiable {
     var id = UUID()
     var angle: Double = 135
     var color = AdjustmentColor(red: 1, green: 0.86, blue: 0.7)
@@ -14,7 +14,7 @@ nonisolated struct RimLight: Equatable, Sendable, Identifiable {
 
 /// Filter › Rim Light: up to `maximumLights` lights behind the subject that catch its edges, and how much of their
 /// light glows in the air around it, 0–100.
-nonisolated struct RimLightSettings: Equatable, Sendable {
+struct RimLightSettings: Equatable, Sendable {
     static let maximumLights = 3
     var lights = [RimLight()]
     var glow: Double = 10
@@ -55,7 +55,7 @@ nonisolated struct RimLightSettings: Equatable, Sendable {
 /// Width in, the photo's fine detail is pressed into it as bumps, and each light, from a little behind the subject,
 /// brightens what faces it. So the rim starts right at the subject's edge and fades inwards, as a light from behind
 /// reaches only what turns away from the camera; strands and edges brighter than their surroundings catch more.
-nonisolated enum RimLighting {
+enum RimLighting {
     /// The rim's width as a share of the image's longer side, from Width 0 to 100.
     static func widthShare(_ width: Double) -> Double { 0.002 + width / 100 * 0.03 }
     /// How bright a light at Strength 100 is, over the surface's own color.

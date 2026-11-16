@@ -4,7 +4,7 @@ import Observation
 
 /// Filters from the Filter menu. Each runs on the active image layer, inside the selection if
 /// there is one, with a live preview and one undo step on OK.
-nonisolated enum FilterKind: String, CaseIterable, Sendable {
+enum FilterKind: String, CaseIterable, Sendable {
     case gaussianBlur = "Gaussian Blur"
     case motionBlur = "Motion Blur"
     case progressiveBlur = "Progressive Blur"
@@ -63,13 +63,13 @@ nonisolated enum FilterKind: String, CaseIterable, Sendable {
 
 /// Remove Background's two ways of working: Apple's own subject mask on its own, or that mask refined against the
 /// layer's detail, which recovers hair and fur but takes longer.
-nonisolated enum BackgroundQuality: String, CaseIterable, Sendable {
+enum BackgroundQuality: String, CaseIterable, Sendable {
     case basic = "Basic"
     case advanced = "Advanced"
 }
 
 /// Every filter's settings; each filter reads only its own.
-nonisolated struct FilterSettings: Equatable, Sendable {
+struct FilterSettings: Equatable, Sendable {
     /// Gaussian Blur radius in layer pixels (the blur's standard deviation), 0.1–250.
     var radius: Double = 5
     /// Gaussian Blur keeps every pixel's transparency: only the colors blur, from the layer's own pixels, so its
@@ -207,12 +207,12 @@ nonisolated struct FilterSettings: Equatable, Sendable {
 }
 
 /// Sides of a layer, in its own pixels (top is row 0).
-nonisolated struct LayerSides: OptionSet, Sendable {
+struct LayerSides: OptionSet, Sendable {
     let rawValue: Int
     static let left = Self(rawValue: 1), right = Self(rawValue: 2), top = Self(rawValue: 4), bottom = Self(rawValue: 8)
 }
 
-nonisolated struct FilterJob: @unchecked Sendable {
+struct FilterJob: @unchecked Sendable {
     let kind: FilterKind
     var image: CGImage
     let settings: FilterSettings
@@ -249,7 +249,7 @@ nonisolated struct FilterJob: @unchecked Sendable {
     var showsSharpenMask = false
 }
 
-nonisolated enum PixelFilter {
+enum PixelFilter {
     /// `image` cropped to the pixels that are actually there, with the transform that keeps them in place: a blur
     /// is given generous room to spread, and whatever it leaves empty is cut away again.
     static func trimmed(_ image: CGImage, placed: LayerTransform) throws -> (image: CGImage, transform: LayerTransform) {
@@ -322,8 +322,8 @@ nonisolated enum PixelFilter {
             // Rows run top-down here, so up on screen is a smaller row.
             direction: SIMD2(Float(cos(angle)), Float(-sin(angle))),
             distance: Float(distance), blur: Float(blur), reach: Float(reach), radial: settings.rgbSplitRadial ? 1 : 0,
-            sides: (sides.contains(.left) ? 1 : 0) | (sides.contains(.right) ? 2 : 0) | (sides.contains(.top) ? 4 : 0)
-                | (sides.contains(.bottom) ? 8 : 0),
+            sides: UInt32((sides.contains(.left) ? 1 : 0) | (sides.contains(.right) ? 2 : 0) | (sides.contains(.top) ? 4 : 0)
+                | (sides.contains(.bottom) ? 8 : 0)),
             spectral: distance > 0 ? UInt32(min(32, max(3, Int(spread)))) : 1,
             smear: blur > 0 ? UInt32(min(24, max(2, Int(smear / 2)))) : 1))
         guard let image = context.makeImage() else { throw ExportError.render }

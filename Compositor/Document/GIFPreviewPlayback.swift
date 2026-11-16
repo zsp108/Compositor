@@ -1,7 +1,7 @@
 import Foundation
 
 /// Preview presentation follows elapsed time; decoding never changes the saved frame delays.
-nonisolated enum GIFPreviewPlayback {
+enum GIFPreviewPlayback {
     @MainActor
     static func play<C: Clock>(durations: [TimeInterval], startingAt initial: Int, loops: Bool = true,
                                clock: C = ContinuousClock(), showFrame: (Int) async throws -> Void) async throws

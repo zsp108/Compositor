@@ -3,7 +3,7 @@ import CoreImage
 
 /// Filter › Lens Effects: what light does inside a camera's lens and the filters in front of it. Each effect is made from
 /// the picture's own light, in linear light as optics work, so only real light sources flare and nothing is pasted on.
-nonisolated enum LensEffect: String, CaseIterable, Codable, Sendable {
+enum LensEffect: String, CaseIterable, Codable, Sendable {
     case anamorphicFlare = "Anamorphic Flare"
     case starburst = "Starburst"
     case mist = "Mist"
@@ -12,7 +12,7 @@ nonisolated enum LensEffect: String, CaseIterable, Codable, Sendable {
 }
 
 /// The shape a lens draws its out-of-focus lights in.
-nonisolated enum BokehShape: String, CaseIterable, Codable, Sendable {
+enum BokehShape: String, CaseIterable, Codable, Sendable {
     /// Wide open.
     case round = "Round"
     /// Stopped down, its aperture's blades showing as straight sides.
@@ -25,7 +25,7 @@ nonisolated enum BokehShape: String, CaseIterable, Codable, Sendable {
     var index: UInt32 { UInt32(Self.allCases.firstIndex(of: self) ?? 0) }
 }
 
-nonisolated struct LensEffectSettings: Codable, Equatable, Sendable {
+struct LensEffectSettings: Codable, Equatable, Sendable {
     static let starPointChoices = [4, 6, 8, 12, 14]
     static let bokehSizes: ClosedRange<Double> = 0.5...6
 
@@ -149,7 +149,7 @@ nonisolated struct LensEffectSettings: Codable, Equatable, Sendable {
 }
 
 /// The light arithmetic behind the lens effects, in Core Image.
-private nonisolated enum LensOptics {
+private enum LensOptics {
     static func linear(_ image: CIImage) -> CIImage { image.applyingFilter("CISRGBToneCurveToLinear") }
     static func gamma(_ image: CIImage) -> CIImage { image.applyingFilter("CILinearToSRGBToneCurve") }
 

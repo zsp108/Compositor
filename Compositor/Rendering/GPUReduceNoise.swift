@@ -4,7 +4,7 @@ import CoreImage
 /// Reduce Noise layers on the GPU canvas: the filter's own work (`PixelFilter.reduceNoise`, its brightness smoothed on
 /// the GPU by `MetalNonlocalMeans`), over each region Core Image asks for and the reach of its search around it, so the
 /// canvas shows what the export makes.
-nonisolated enum GPUReduceNoise {
+enum GPUReduceNoise {
     static func apply(to image: CIImage, _ settings: ReduceNoiseLayerSettings, scale: CGFloat) -> CIImage? {
         let extent = image.extent
         guard !extent.isInfinite, !extent.isEmpty else { return nil }

@@ -11,7 +11,7 @@ import Metal
 /// With blur it runs in two passes: the streaks first, into a copy padded by the split's reach, then the spectrum read
 /// from that — a sample per streak position plus one per spectrum position, rather than one for every pair of them,
 /// which is several times faster and looks the same, the fine grain falling slightly differently.
-nonisolated final class MetalDispersion: @unchecked Sendable {
+final class MetalDispersion: @unchecked Sendable {
     static let shared: MetalDispersion? = try? MetalDispersion()
     private let device: MTLDevice
     private let queue: MTLCommandQueue

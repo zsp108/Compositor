@@ -7,7 +7,7 @@ import UniformTypeIdentifiers
 /// photosite at 12–14 bits; every choice a JPEG has already baked in — exposure, white balance,
 /// contrast — is still open. Compositor's layers are 8-bit, so that latitude has to be spent at
 /// import: these are the controls for spending it deliberately rather than accepting a default.
-nonisolated struct RawDevelopSettings: Equatable, Sendable {
+struct RawDevelopSettings: Equatable, Sendable {
     /// Stops of exposure, either side of what the camera recorded.
     var exposure: Float = 0
     /// White balance in Kelvin, starting from the camera's own reading.
@@ -49,7 +49,7 @@ nonisolated struct RawDevelopSettings: Equatable, Sendable {
     }
 }
 
-nonisolated enum RawImporter {
+enum RawImporter {
     /// One context for every develop: building a CIContext allocates GPU resources, and the sheet
     /// develops again on each slider move. Half-float in linear light throughout, named rather than left to
     /// Core Image's defaults, so nothing is rounded before the final 8-bit pixels.
@@ -106,7 +106,7 @@ nonisolated enum RawImporter {
         var settings = RawDevelopSettings(temperature: filter.neutralTemperature, tint: filter.neutralTint)
         settings.noiseReduction = filter.isLuminanceNoiseReductionSupported ? filter.luminanceNoiseReductionAmount : 0
         settings.lensCorrection = filter.isLensCorrectionSupported && filter.isLensCorrectionEnabled
-        settings.highlightRecovery = filter.isHighlightRecoverySupported && filter.isHighlightRecoveryEnabled
+        settings.highlightRecovery = false
         settings.asShotTemperature = settings.temperature
         settings.asShotTint = settings.tint
         settings.asShotNoiseReduction = settings.noiseReduction
@@ -114,7 +114,7 @@ nonisolated enum RawImporter {
         settings.asShotHighlightRecovery = settings.highlightRecovery
         settings.supportsNoiseReduction = filter.isLuminanceNoiseReductionSupported
         settings.supportsLensCorrection = filter.isLensCorrectionSupported
-        settings.supportsHighlightRecovery = filter.isHighlightRecoverySupported
+        settings.supportsHighlightRecovery = false
         return settings
     }
 
@@ -142,7 +142,7 @@ nonisolated enum RawImporter {
         filter.boostAmount = settings.boost
         if settings.supportsNoiseReduction { filter.luminanceNoiseReductionAmount = settings.noiseReduction }
         if settings.supportsLensCorrection { filter.isLensCorrectionEnabled = settings.lensCorrection }
-        if settings.supportsHighlightRecovery { filter.isHighlightRecoveryEnabled = settings.highlightRecovery }
+        // Note: isHighlightRecoveryEnabled is macOS 26+ only.
         guard let output = filter.outputImage else { return nil }
         if sixteenBit {
             return context.createCGImage(output, from: output.extent.integral, format: .RGBA16,

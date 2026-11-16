@@ -4,7 +4,7 @@ import Metal
 
 /// Vignette and Tonal Contrast adjustment layers on the canvas's GPU: the same arithmetic as the filters' C
 /// (`adjust_colored_vignette`, `adjust_tonal_contrast`), run inside a Core Image graph so the canvas never leaves the GPU.
-nonisolated final class MetalFinishing: @unchecked Sendable {
+final class MetalFinishing: @unchecked Sendable {
     static let shared: MetalFinishing? = try? MetalFinishing()
     let vignette: MTLComputePipelineState
     let tonal: MTLComputePipelineState

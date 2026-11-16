@@ -2,7 +2,7 @@ import CoreGraphics
 import Foundation
 
 /// The Move tool's Align and Distribute commands, as in Photoshop.
-nonisolated enum LayerAlignment: String, CaseIterable, Sendable {
+enum LayerAlignment: String, CaseIterable, Sendable {
     case left = "Left Edges", horizontalCenter = "Horizontal Centers", right = "Right Edges"
     case top = "Top Edges", verticalCenter = "Vertical Centers", bottom = "Bottom Edges"
 
@@ -30,7 +30,7 @@ nonisolated enum LayerAlignment: String, CaseIterable, Sendable {
     }
 }
 
-nonisolated enum LayerDistribution: String, CaseIterable, Sendable {
+enum LayerDistribution: String, CaseIterable, Sendable {
     case horizontalCenters = "Horizontal Centers", verticalCenters = "Vertical Centers"
     case horizontalSpacing = "Horizontal Spacing", verticalSpacing = "Vertical Spacing"
 

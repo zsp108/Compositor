@@ -8,7 +8,7 @@ import Vision
 /// is where the light is, in document coordinates, set by clicking the canvas; the filter opens with it on the layer's
 /// brightest spot. The rest are 0–100: how bright the beams are, how far from the light they reach, how thick the
 /// haze is, how big the light is, and how much the beams break up into shafts.
-nonisolated struct VolumetricLightSettings: Equatable, Sendable {
+struct VolumetricLightSettings: Equatable, Sendable {
     var center: CGPoint?
     var color = AdjustmentColor(red: 1, green: 0.86, blue: 0.68)
     var intensity: Double = 30
@@ -48,7 +48,7 @@ nonisolated struct VolumetricLightSettings: Equatable, Sendable {
 /// shapes blocking it; each pixel then gathers that light along the line back toward the light, so whatever blocks it
 /// casts shafts of shadow through the beams. The haze is thickest near the light and thinner in front of the subject,
 /// which stands nearer than what's behind it, so the subject sits in the air rather than under a veil.
-nonisolated enum VolumetricLighting {
+enum VolumetricLighting {
     /// How bright the beams are at Intensity 100, over the photo.
     static let fullIntensity: Double = 5
     /// How thick the haze is at Haze 100.
