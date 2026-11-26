@@ -5,7 +5,9 @@ PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$PROJECT_DIR"
 
 VOL_NAME="Compositor"
-DMG_NAME="Compositor-1.6.7-macOS15-zh_CN.dmg"
+VERSION=$(grep -m1 "MARKETING_VERSION = " "$PROJECT_DIR/Compositor.xcodeproj/project.pbxproj" | sed -E 's/.*= ([^;]+);/\1/' | tr -d '[:space:]')
+VERSION="${VERSION:-1.7.2}"
+DMG_NAME="Compositor-${VERSION}-macOS15-zh_CN.dmg"
 OUTPUT_DMG="$PROJECT_DIR/$DMG_NAME"
 TEMP_DMG="/tmp/Compositor_build_temp.dmg"
 BG_IMG="/tmp/dmg_bg_retina.png"

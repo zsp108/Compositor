@@ -1057,6 +1057,22 @@
         }
       }
     },
+    "Changes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Changes"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更改"
+          }
+        }
+      }
+    },
     "Channel": {
       "localizations": {
         "en": {
@@ -1681,6 +1697,38 @@
         }
       }
     },
+    "Color of the next line": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Color of the next line"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下一条线条的颜色"
+          }
+        }
+      }
+    },
+    "Color of the selected line": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Color of the selected line"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所选线条的颜色"
+          }
+        }
+      }
+    },
     "Color Overlay": {
       "localizations": {
         "en": {
@@ -2253,6 +2301,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "绘制线条前变暗或变亮"
+          }
+        }
+      }
+    },
+    "Dashes of the selected line; they grow with its width": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Dashes of the selected line; they grow with its width"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所选线条的虚线样式；虚线随线条宽度自适应缩放"
           }
         }
       }
@@ -3201,6 +3265,22 @@
         }
       }
     },
+    "Fill": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Fill"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "填充"
+          }
+        }
+      }
+    },
     "Fill color": {
       "localizations": {
         "en": {
@@ -3213,6 +3293,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "填充颜色"
+          }
+        }
+      }
+    },
+    "Fill color of the selected shape": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Fill color of the selected shape"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所选形状的填充颜色"
           }
         }
       }
@@ -3757,6 +3853,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "发光"
+          }
+        }
+      }
+    },
+    "Grab Frame": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Grab Frame"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "捕获帧"
           }
         }
       }
@@ -4801,6 +4913,22 @@
         }
       }
     },
+    "How this line's ends are finished": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "How this line's ends are finished"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此线条端点的收尾样式"
+          }
+        }
+      }
+    },
     "HSL lists every color. Color edits one family. Point Color adjusts a color you pick.": {
       "localizations": {
         "en": {
@@ -5421,6 +5549,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "图层"
+          }
+        }
+      }
+    },
+    "Layers, folders and masks kept · sRGB": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Layers, folders and masks kept · sRGB"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保留图层、文件夹与蒙版 · sRGB"
           }
         }
       }
@@ -6225,6 +6369,38 @@
         }
       }
     },
+    "Movie playhead": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Movie playhead"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "视频播放头"
+          }
+        }
+      }
+    },
+    "Mute movie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Mute movie"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "视频静音"
+          }
+        }
+      }
+    },
     "Navigator": {
       "localizations": {
         "en": {
@@ -6722,6 +6898,7 @@
       }
     },
     "Open Project…": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -6749,6 +6926,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "打开最近使用"
+          }
+        }
+      }
+    },
+    "Open…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Open…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开…"
           }
         }
       }
@@ -6834,6 +7027,7 @@
       }
     },
     "Other formats: TIFF, PDF and GIF%@, and Channel Pack for game textures": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -6845,6 +7039,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "其他格式：TIFF、PDF 与 GIF%@，以及游戏贴图专用的通道打包"
+          }
+        }
+      }
+    },
+    "Other formats: TIFF, PDF and GIF%@, Channel Pack for game textures, and PSD to keep the layers for Photoshop": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Other formats: TIFF, PDF and GIF%@, Channel Pack for game textures, and PSD to keep the layers for Photoshop"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其他格式：TIFF、PDF 和 GIF%@，用于游戏贴图的通道打包，以及为 Photoshop 保留图层的 PSD"
           }
         }
       }
@@ -7841,6 +8051,22 @@
         }
       }
     },
+    "Relink…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Relink…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新链接…"
+          }
+        }
+      }
+    },
     "Remove Chromatic Aberration": {
       "localizations": {
         "en": {
@@ -8285,6 +8511,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "将矩形圆角半径设为指定像素值；0 保持直角矩形"
+          }
+        }
+      }
+    },
+    "Round this rectangle's corners by this many pixels; 0 keeps them square": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Round this rectangle's corners by this many pixels; 0 keeps them square"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将此矩形的圆角设为此像素数；0 保持直角"
           }
         }
       }
@@ -9361,6 +9603,38 @@
         }
       }
     },
+    "Stroke color": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Stroke color"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "描边颜色"
+          }
+        }
+      }
+    },
+    "Stroke drawn inside the shape, in pixels. 0 draws none": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Stroke drawn inside the shape, in pixels. 0 draws none"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在形状内部绘制的描边宽度（像素）；0 表示无描边"
+          }
+        }
+      }
+    },
     "Strong Contrast": {
       "localizations": {
         "en": {
@@ -10097,6 +10371,22 @@
         }
       }
     },
+    "Unmute movie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Unmute movie"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消视频静音"
+          }
+        }
+      }
+    },
     "Unsaved changes": {
       "localizations": {
         "en": {
@@ -10621,22 +10911,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "缩放百分比 (0.1–3200%)。按 Return 确认生效。"
-          }
-        }
-      }
-    },
-    "Open…": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Open…"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "打开…"
           }
         }
       }

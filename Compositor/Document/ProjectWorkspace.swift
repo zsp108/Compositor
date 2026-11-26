@@ -103,7 +103,7 @@ final class ProjectWorkspace {
         var urls = suppliedURL.map { [$0] } ?? []
         if urls.isEmpty {
             let panel = NSOpenPanel()
-            panel.allowedContentTypes = [.compositorProject] + UTType.importableImages
+            panel.allowedContentTypes = [.compositorProject] + UTType.importableImages + [.quickTimeMovie, .mpeg4Movie]
             panel.allowsMultipleSelection = true
             panel.treatsFilePackagesAsDirectories = false
             panel.title = "Open"

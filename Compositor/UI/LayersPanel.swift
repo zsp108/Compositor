@@ -13,6 +13,12 @@ struct LayersPanel: View {
             LayersHeader(session: session)
             Divider()
             LayerAppearanceControls(session: session, layerID: session.activeLayerID).id(session.activeLayerID)
+                .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { session.layerControlsFrame = $0 }
+                // A layer drag that left the list and comes back over the controls is the list's again.
+                // It reaches a few points down, over the divider and the list's top edge: in the gap between the two, the
+                // window's own drop briefly took the drag, showing it small with a "+". It's put in place as the row is
+                // picked up, rather than as the drag leaves the list, which came a frame late for a drag turned straight back.
+                .overlay { if session.layerDragIsOutside { LayerDropForwarder(session: session).padding(.bottom, -6) } }
             Divider()
             if let layers = session.document?.layers, !layers.isEmpty {
                 if session.isFilteringLayers, session.filteredLayerRows.isEmpty {
@@ -68,6 +74,7 @@ private struct LayersUnavailableView<Content: View>: View {
 
 /// The buttons under the layers: new layer, folder, mask, adjustment and filter layers, effects, and delete.
 struct LayersFooter: View {
+    static let height: CGFloat = 48
     let session: EditorSession
 
     var body: some View {
@@ -104,6 +111,7 @@ struct LayersFooter: View {
         }
         .buttonStyle(.plain).foregroundStyle(.secondary)
         .padding(.horizontal, 8).padding(.vertical, 4) // Plus the hit areas' 8 and 12: the original 16.
+        .frame(height: Self.height)
     }
 }
 

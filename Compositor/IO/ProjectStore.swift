@@ -17,7 +17,7 @@ extension UTType {
 
 struct ProjectManifest: Codable, Sendable {
     /// The format version new saves write.
-    static let current = 21
+    static let current = 23
     /// Every version `load` accepts: each one a release has written (1 through `current`), and 27 from the
     /// GIF branch's own builds. Leaving out 15 and 16 once locked out projects saved by 1.5.4 and 1.5.5.
     /// The package-header and manifest checks both read this, so they can't drift apart when `current` is bumped.
@@ -61,6 +61,7 @@ struct ProjectLayerRecord: Codable, Sendable {
     var text: LayerTextStyle? = nil
     /// The embedded animation and masks scoped to individual frames. Missing before version 27.
     var gif: ProjectGIFRecord? = nil
+    var movie: MovieLink? = nil
 }
 
 struct ProjectGIFRecord: Codable, Sendable {
@@ -341,6 +342,10 @@ actor ProjectStore {
         guard (1...DocumentLimits.maxSide).contains(manifest.width), (1...DocumentLimits.maxSide).contains(manifest.height),
               manifest.layers.count <= 10_000 else { throw ProjectError.tooLarge }
         for layer in manifest.layers {
+            if let movie = layer.movie {
+                guard manifest.version == 23, layer.imageFile != nil, layer.isGroup != true, layer.gif == nil,
+                      movie.duration.isFinite, movie.duration > 0, (0...movie.duration).contains(movie.seconds) else { throw ProjectError.invalid }
+            }
             if layer.shape?.smoothing == true {
                 guard manifest.version >= 14 else { throw ProjectError.invalid }
             }
@@ -383,6 +388,15 @@ actor ProjectStore {
             // A line's dashes and caps arrived in version 15, and only lines have them.
             if let shape = layer.shape, shape.lineStyle != nil || shape.lineCap != nil {
                 guard manifest.version >= 15, shape.kind == .line else { throw ProjectError.invalid }
+            }
+            // A rectangle or ellipse's inside stroke arrived in version 22, and only those shapes have one.
+            if let shape = layer.shape,
+               shape.strokeWidth != nil || shape.strokeRed != nil || shape.strokeGreen != nil || shape.strokeBlue != nil {
+                guard manifest.version >= 22, shape.kind == .rectangle || shape.kind == .ellipse,
+                      let width = shape.strokeWidth, width.isFinite, width > 0, width <= 5000,
+                      let red = shape.strokeRed, let green = shape.strokeGreen, let blue = shape.strokeBlue,
+                      red.isFinite, green.isFinite, blue.isFinite,
+                      (0...1).contains(red), (0...1).contains(green), (0...1).contains(blue) else { throw ProjectError.invalid }
             }
             if let text = layer.text {
                 // Per-letter colors arrived in version 10, per-letter faces in version 11.
